@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>软件官网 · 一键直达</title>
+<meta name="description" content="常用软件官网导航，国内、国外分组，点击图标直达官网。" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%233b6cf6'/%3E%3Cg fill='%23fff'%3E%3Crect x='14' y='14' width='15' height='15' rx='4.5'/%3E%3Crect x='35' y='14' width='15' height='15' rx='4.5'/%3E%3Crect x='14' y='35' width='15' height='15' rx='4.5'/%3E%3Crect x='35' y='35' width='15' height='15' rx='4.5'/%3E%3C/g%3E%3C/svg%3E" />
+<style>
+  :root{
+    --bg:#f4f6fb;
+    --bg-grad-1:rgba(59,108,246,.10);
+    --bg-grad-2:rgba(229,72,77,.08);
+    --card:#ffffff;
+    --card-hover:#ffffff;
+    --tile:#f6f7fb;
+    --text:#171a21;
+    --muted:#79808f;
+    --border:rgba(20,28,48,.08);
+    --border-hover:rgba(59,108,246,.35);
+    --shadow:0 1px 2px rgba(20,30,60,.05), 0 8px 24px -12px rgba(20,30,60,.16);
+    --shadow-hover:0 18px 40px -16px rgba(20,30,60,.28);
+    --cn:#e5484d;
+    --intl:#3b6cf6;
+    --ring:rgba(59,108,246,.18);
+    --tabbar:rgba(255,255,255,.86);
+    --tabbar-shadow:0 -10px 30px -22px rgba(20,30,60,.55);
+  }
+  html[data-theme="dark"]{
+    --bg:#0b0d12;
+    --bg-grad-1:rgba(59,108,246,.18);
+    --bg-grad-2:rgba(229,72,77,.12);
+    --card:#1a1e27;
+    --card-hover:#212632;
+    --tile:#252a35;
+    --text:#eef1f6;
+    --muted:#98a1b2;
+    --border:rgba(255,255,255,.13);
+    --border-hover:rgba(120,158,255,.55);
+    --shadow:0 1px 2px rgba(0,0,0,.45), 0 10px 28px -14px rgba(0,0,0,.75);
+    --shadow-hover:0 20px 44px -18px rgba(0,0,0,.85);
+    --ring:rgba(110,150,255,.22);
+    --tabbar:rgba(20,23,30,.90);
+    --tabbar-shadow:0 -10px 30px -20px rgba(0,0,0,.9);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    min-height:100vh;
+    background:var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei","Hiragino Sans GB",sans-serif;
+    -webkit-font-smoothing:antialiased;
+    position:relative;
+    overflow-x:hidden;
+  }
+  body::before{
+    content:"";
+    position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:
+      radial-gradient(720px 420px at 12% -6%, var(--bg-grad-1), transparent 65%),
+      radial-gradient(680px 420px at 92% 4%, var(--bg-grad-2), transparent 62%);
+  }
+  .wrap{position:relative;z-index:1;max-width:1120px;margin:0 auto;padding:56px 24px 132px;}
+
+  /* ---------- 顶部 ---------- */
+  header{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:44px;}
+  .brand h1{
+    margin:0;font-size:34px;line-height:1.15;letter-spacing:-.5px;font-weight:800;
+    background:linear-gradient(100deg,var(--text) 30%, #5b7cfa 78%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .brand p{margin:10px 0 0;color:var(--muted);font-size:14.5px;letter-spacing:.2px;}
+  .brand .tagline{display:inline-flex;align-items:center;gap:7px;}
+  .brand .tagline i{width:6px;height:6px;border-radius:50%;background:#3ecf8e;box-shadow:0 0 0 3px rgba(62,207,142,.16);font-style:normal;}
+
+  .toolbar{display:flex;align-items:center;gap:10px;}
+  .search{position:relative;}
+  .search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:16px;height:16px;stroke:var(--muted);fill:none;stroke-width:2;pointer-events:none;}
+  #q{
+    width:250px;height:44px;padding:0 16px 0 40px;
+    border:1px solid var(--border);border-radius:999px;
+    background:var(--card);color:var(--text);font-size:14px;font-family:inherit;
+    outline:none;transition:border-color .18s, box-shadow .18s, width .2s;
+    box-shadow:var(--shadow);
+  }
+  #q::placeholder{color:var(--muted);}
+  #q:focus{border-color:var(--border-hover);box-shadow:0 0 0 4px var(--ring);}
+  .icon-btn{
+    width:44px;height:44px;flex:none;display:grid;place-items:center;cursor:pointer;
+    border:1px solid var(--border);border-radius:50%;background:var(--card);color:var(--muted);
+    box-shadow:var(--shadow);transition:transform .18s, color .18s, border-color .18s;
+    font-size:17px;line-height:1;
+  }
+  .icon-btn:hover{transform:translateY(-2px);color:var(--text);border-color:var(--border-hover);}
+
+  /* ---------- 分组 ---------- */
+  .group{margin-bottom:46px;}
+  .group-head{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+  .group-head h2{margin:0;font-size:17px;font-weight:700;letter-spacing:.2px;}
+  .group-head .dot{width:9px;height:9px;border-radius:3px;flex:none;}
+  .group-head .line{flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent);}
+  .group-head .count{
+    font-size:12px;font-weight:600;color:var(--muted);
+    padding:3px 10px;border-radius:999px;background:var(--tile);border:1px solid var(--border);
+  }
+  .g-cn .dot{background:var(--cn);box-shadow:0 0 0 4px rgba(229,72,77,.13);}
+  .g-intl .dot{background:var(--intl);box-shadow:0 0 0 4px rgba(59,108,246,.13);}
+
+  /* ---------- 卡片 ---------- */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:16px;}
+  .card{
+    position:relative;display:flex;flex-direction:column;align-items:center;gap:13px;
+    padding:24px 14px 20px;text-decoration:none;color:inherit;
+    background:var(--card);border:1px solid var(--border);border-radius:20px;
+    box-shadow:var(--shadow);overflow:hidden;
+    transition:transform .22s cubic-bezier(.2,.7,.3,1), box-shadow .22s, border-color .22s, background .22s;
+    opacity:0;transform:translateY(12px);
+    animation:rise .5s cubic-bezier(.2,.7,.3,1) forwards;
+  }
+  @keyframes rise{to{opacity:1;transform:translateY(0);}}
+  .card::after{
+    content:"";position:absolute;inset:0;border-radius:20px;pointer-events:none;
+    background:radial-gradient(320px 130px at 50% -30%, var(--ring), transparent 70%);
+    opacity:0;transition:opacity .25s;
+  }
+  .card:hover{transform:translateY(-6px);box-shadow:var(--shadow-hover);border-color:var(--border-hover);background:var(--card-hover);}
+  .card:hover::after{opacity:1;}
+  .card:active{transform:translateY(-2px) scale(.99);}
+  .card:focus-visible{outline:none;border-color:var(--border-hover);box-shadow:0 0 0 4px var(--ring);}
+
+  .tile{
+    width:72px;height:72px;flex:none;border-radius:18px;
+    display:grid;place-items:center;background:var(--tile);
+    border:1px solid var(--border);
+    transition:transform .25s cubic-bezier(.2,.7,.3,1), box-shadow .25s;
+  }
+  .card:hover .tile{transform:scale(1.07) rotate(-1.5deg);box-shadow:0 8px 18px -10px rgba(20,30,60,.4);}
+  .tile img{width:48px;height:48px;object-fit:contain;display:block;}
+  html[data-theme="dark"] .tile img.mono{filter:invert(1) hue-rotate(180deg);}
+
+  .meta{text-align:center;min-width:0;width:100%;}
+  .meta .n{display:block;font-size:14.5px;font-weight:650;letter-spacing:.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .meta .e{display:block;margin-top:5px;font-size:11.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:.3px;}
+
+  .go{
+    position:absolute;top:12px;right:12px;width:24px;height:24px;border-radius:8px;
+    display:grid;place-items:center;background:var(--tile);border:1px solid var(--border);
+    opacity:0;transform:translate(-4px,4px) scale(.85);transition:.22s;
+  }
+  .go svg{width:12px;height:12px;stroke:var(--muted);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
+  .card:hover .go{opacity:1;transform:translate(0,0) scale(1);}
+  .g-cn .card:hover .go svg{stroke:var(--cn);}
+  .g-intl .card:hover .go svg{stroke:var(--intl);}
+
+  /* ---------- 空状态 / 页脚 ---------- */
+  .empty{display:none;text-align:center;color:var(--muted);padding:56px 0;font-size:14.5px;}
+  .empty.show{display:block;}
+  .hidden{display:none !important;}
+  footer{
+    margin-top:8px;padding-top:24px;border-top:1px solid var(--border);
+    display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+    color:var(--muted);font-size:12.5px;
+  }
+  footer kbd{
+    font-family:inherit;font-size:11.5px;padding:2px 7px;border-radius:6px;
+    background:var(--tile);border:1px solid var(--border);color:var(--muted);
+  }
+
+  /* ---------- 底部导航栏 ---------- */
+  .tabbar{
+    position:fixed;left:0;right:0;bottom:0;z-index:60;
+    display:flex;justify-content:center;align-items:stretch;gap:6px;
+    padding:9px 14px calc(9px + env(safe-area-inset-bottom, 0px));
+    background:var(--tabbar);
+    -webkit-backdrop-filter:saturate(180%) blur(18px);
+    backdrop-filter:saturate(180%) blur(18px);
+    border-top:1px solid var(--border);
+    box-shadow:var(--tabbar-shadow);
+  }
+  .tab{
+    flex:1 1 0;max-width:180px;min-width:0;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+    padding:7px 8px;border:0;border-radius:14px;background:transparent;
+    color:var(--muted);font-family:inherit;font-size:12px;font-weight:650;letter-spacing:.2px;
+    cursor:pointer;-webkit-tap-highlight-color:transparent;
+    transition:background .2s, color .2s, transform .16s;
+  }
+  .tab svg{width:21px;height:21px;flex:none;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;}
+  .tab:hover{color:var(--text);}
+  .tab:active{transform:scale(.95);}
+  .tab.active{background:var(--tile);color:var(--text);}
+  .tab[data-filter="cn"].active{color:var(--cn);background:rgba(229,72,77,.11);}
+  .tab[data-filter="intl"].active{color:var(--intl);background:rgba(59,108,246,.12);}
+  html[data-theme="dark"] .tab[data-filter="cn"].active{background:rgba(229,72,77,.20);}
+  html[data-theme="dark"] .tab[data-filter="intl"].active{background:rgba(59,108,246,.22);}
+
+  @media (min-width:700px){
+    /* 桌面端：底部浮动胶囊 */
+    .tabbar{
+      left:50%;right:auto;transform:translateX(-50%);
+      bottom:26px;width:auto;gap:4px;padding:7px;
+      border:1px solid var(--border);border-top:1px solid var(--border);
+      border-radius:999px;
+      box-shadow:0 18px 44px -20px rgba(20,30,60,.4), var(--shadow);
+    }
+    .tab{
+      flex:0 0 auto;min-width:136px;flex-direction:row;gap:8px;
+      padding:11px 22px;border-radius:999px;font-size:13.5px;
+    }
+    .tab svg{width:18px;height:18px;}
+  }
+
+  @media (max-width:640px){
+    .wrap{padding:34px 16px 120px;}
+    .brand h1{font-size:27px;}
+    .toolbar{width:100%;}
+    #q{width:100%;}
+    .search{flex:1;}
+    .grid{grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:11px;}
+    .card{padding:18px 8px 15px;border-radius:17px;gap:10px;}
+    .tile{width:54px;height:54px;border-radius:15px;}
+    .tile img{width:36px;height:36px;}
+    .meta .n{font-size:13px;}
+    .meta .e{font-size:10.5px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <h1>软件官网</h1>
+      <p class="tagline"><i></i>点击图标，直达官方站点 · 国内 / 国外分组</p>
+    </div>
+    <div class="toolbar">
+      <div class="search">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
+        <input id="q" type="search" placeholder="搜索软件…" autocomplete="off" spellcheck="false" />
+      </div>
+      <button class="icon-btn" id="theme" title="切换深色 / 浅色" aria-label="切换主题">☾</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="group g-cn" data-group="cn">
+      <div class="group-head">
+        <span class="dot"></span><h2>国内软件</h2>
+        <span class="count" data-count="cn">0</span><span class="line"></span>
+      </div>
+      <div class="grid" data-grid="cn"></div>
+    </section>
+
+    <section class="group g-intl" data-group="intl">
+      <div class="group-head">
+        <span class="dot"></span><h2>国外软件</h2>
+        <span class="count" data-count="intl">0</span><span class="line"></span>
+      </div>
+      <div class="grid" data-grid="intl"></div>
+    </section>
+
+    <div class="empty" id="empty">没有找到匹配的软件</div>
+  </main>
+
+  <footer>
+    <span>显示 <b id="total">0</b> 个软件 · 点击卡片打开官网</span>
+    <span>按 <kbd>/</kbd> 快速搜索 · 图标版权归各品牌所有</span>
+  </footer>
+</div>
+
+<nav class="tabbar" id="tabbar" role="tablist" aria-label="软件分组切换">
+  <button class="tab active" type="button" data-filter="all" role="tab" aria-selected="true">
+    <svg viewBox="0 0 24 24"><rect x="3.2" y="3.2" width="7.2" height="7.2" rx="2.2"/><rect x="13.6" y="3.2" width="7.2" height="7.2" rx="2.2"/><rect x="3.2" y="13.6" width="7.2" height="7.2" rx="2.2"/><rect x="13.6" y="13.6" width="7.2" height="7.2" rx="2.2"/></svg>
+    <span>全部</span>
+  </button>
+  <button class="tab" type="button" data-filter="cn" role="tab" aria-selected="false">
+    <svg viewBox="0 0 24 24"><path d="M5.6 3.6v17"/><path d="M5.6 5.1h12.9l-2.6 3.85 2.6 3.85H5.6"/></svg>
+    <span>国内软件</span>
+  </button>
+  <button class="tab" type="button" data-filter="intl" role="tab" aria-selected="false">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><path d="M3.4 12h17.2"/><ellipse cx="12" cy="12" rx="3.9" ry="8.6"/></svg>
+    <span>国外软件</span>
+  </button>
+</nav>
+
+<script>
+const APPS = [
+  /* ---------- 国内 ---------- */
+  { name:"豆包",        en:"Doubao",           url:"https://www.doubao.com/",     icon:"icons/doubao.png",   group:"cn" },
+  { name:"DeepSeek",    en:"深度求索",          url:"https://www.deepseek.com/",   icon:"icons/deepseek.ico", group:"cn" },
+  { name:"千问",        en:"阿里巴巴",          url:"https://www.qianwen.com/",    icon:"icons/qianwen.png",  group:"cn" },
+  { name:"小米 MiMo",   en:"Xiaomi MiMo",      url:"https://mimo.mi.com/",        icon:"icons/mimo.png",     group:"cn" },
+  { name:"Kimi",        en:"月之暗面",          url:"https://www.kimi.com/",       icon:"icons/kimi.png",     group:"cn" },
+  { name:"WorkBuddy",   en:"AI 工作助手",       url:"https://www.workbuddy.cn/app",icon:"icons/workbuddy.svg",group:"cn" },
+  { name:"看剧AI",      en:"Kanju AI",         url:"https://kanju1.ai/",          icon:"icons/kanju.png",    group:"cn" },
+  /* ---------- 国外 ---------- */
+  { name:"GitHub",      en:"代码托管平台",      url:"https://github.com/",         icon:"icons/github.svg",   group:"intl", mono:true },
+  { name:"ChatGPT",     en:"OpenAI",           url:"https://chatgpt.com/",        icon:"icons/chatgpt.svg",  group:"intl", mono:true },
+  { name:"TikTok",      en:"短视频平台",        url:"https://www.tiktok.com/",     icon:"icons/tiktok.svg",   group:"intl", iconBg:"#010101" },
+  { name:"X",           en:"推特",              url:"https://x.com/",              icon:"icons/x.svg",        group:"intl", iconBg:"#000000" },
+  { name:"YouTube",     en:"视频平台",          url:"https://www.youtube.com/",    icon:"icons/youtube.svg",  group:"intl" },
+  { name:"Facebook",    en:"Meta",             url:"https://www.facebook.com/",   icon:"icons/facebook.svg", group:"intl" },
+  { name:"Telegram",    en:"即时通讯",          url:"https://telegram.org/",       icon:"icons/telegram.svg", group:"intl" },
+  { name:"Instagram",   en:"Meta",             url:"https://www.instagram.com/",  icon:"icons/instagram.svg",group:"intl" },
+  { name:"WhatsApp",    en:"Meta",             url:"https://www.whatsapp.com/",   icon:"icons/whatsapp.svg", group:"intl" }
+];
+
+const ARROW = '<svg viewBox="0 0 24 24"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>';
+
+function cardHTML(app, i){
+  const tileBg = app.iconBg ? ` style="background:${app.iconBg};border-color:${app.iconBg}"` : '';
+  return `<a class="card" href="${app.url}" target="_blank" rel="noopener noreferrer"
+             title="${app.name} · ${app.url}" style="animation-delay:${i*32}ms">
+      <span class="go">${ARROW}</span>
+      <span class="tile"${tileBg}><img class="icon${app.mono ? ' mono' : ''}" src="${app.icon}" alt="${app.name}" /></span>
+      <span class="meta"><span class="n">${app.name}</span><span class="e">${app.en}</span></span>
+    </a>`;
+}
+
+function render(){
+  ['cn','intl'].forEach(g => {
+    const list = APPS.filter(a => a.group === g);
+    document.querySelector(`[data-grid="${g}"]`).innerHTML = list.map(cardHTML).join('');
+    document.querySelector(`[data-count="${g}"]`).textContent = list.length;
+  });
+  document.getElementById('total').textContent = APPS.length;
+}
+
+/* 底部导航 + 搜索 联合过滤 */
+let activeTab = 'all';
+
+function applyFilter(){
+  const kw = (document.getElementById('q').value || '').trim().toLowerCase();
+  let shown = 0;
+  document.querySelectorAll('.group').forEach(sec => {
+    const tabHit = activeTab === 'all' || activeTab === sec.dataset.group;
+    let n = 0;
+    sec.querySelectorAll('.card').forEach(card => {
+      const app = APPS.find(a => a.name === card.querySelector('.n').textContent);
+      const kwHit = !kw || [app.name, app.en, app.url].join(' ').toLowerCase().includes(kw);
+      const hit = tabHit && kwHit;
+      card.classList.toggle('hidden', !hit);
+      if (hit) n++;
+    });
+    sec.classList.toggle('hidden', n === 0);
+    shown += n;
+  });
+  document.getElementById('total').textContent = shown;
+  document.getElementById('empty').classList.toggle('show', shown === 0);
+}
+
+/* 主题 */
+const root = document.documentElement;
+function lsGet(k){ try { return localStorage.getItem(k); } catch (e) { return null; } }
+function lsSet(k, v){ try { localStorage.setItem(k, v); } catch (e) {} }
+const saved = lsGet('theme');
+if (saved) root.dataset.theme = saved;
+function syncThemeBtn(){
+  document.getElementById('theme').textContent = root.dataset.theme === 'dark' ? '☀' : '☾';
+}
+document.getElementById('theme').addEventListener('click', () => {
+  root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+  lsSet('theme', root.dataset.theme);
+  syncThemeBtn();
+  syncNativeTheme();
+});
+
+/* 快捷键：/ 聚焦搜索，Esc 清空 */
+document.getElementById('q').addEventListener('input', applyFilter);
+document.addEventListener('keydown', e => {
+  const q = document.getElementById('q');
+  if (e.key === '/' && document.activeElement !== q){ e.preventDefault(); q.focus(); }
+  if (e.key === 'Escape' && document.activeElement === q){ q.value = ''; applyFilter(); q.blur(); }
+});
+
+/* 底部导航栏：全部 / 国内软件 / 国外软件 */
+const tabBtns = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+tabBtns.forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    activeTab = btn.dataset.filter;
+    tabBtns.forEach(function (b) {
+      const on = (b === btn);
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    applyFilter();
+    if (window.scrollY > 0) window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+
+/* ---------- App（WebView）内增强 ---------- */
+function isApp(){ return !!(window.NativeApp && typeof window.NativeApp.open === 'function'); }
+function syncNativeTheme(){
+  if (isApp() && typeof window.NativeApp.setTheme === 'function') {
+    try { window.NativeApp.setTheme(root.dataset.theme === 'dark'); } catch (e) {}
+  }
+}
+
+render();
+syncThemeBtn();
+
+if (isApp()) {
+  /* 去掉 target=_blank，让 WebView 的 shouldOverrideUrlLoading 作为兜底 */
+  var cards = document.querySelectorAll('.card');
+  for (var ci = 0; ci < cards.length; ci++) cards[ci].removeAttribute('target');
+  syncNativeTheme();
+}
+
+/* 点击卡片：App 内交给系统浏览器打开官网 */
+document.addEventListener('click', function (e) {
+  var el = e.target;
+  while (el && el !== document.body) {
+    if (el.classList && el.classList.contains('card')) {
+      if (isApp()) {
+        e.preventDefault();
+        try { window.NativeApp.open(el.getAttribute('href')); } catch (err) {}
+      }
+      return;
+    }
+    el = el.parentNode;
+  }
+}, true);
+</script>
+</body>
+</html>
