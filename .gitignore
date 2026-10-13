@@ -1,6 +1,9 @@
-# 本地辅助脚本，不入库
-.deploy_api.py
-.push_readme.py
+# 本地辅助脚本 / 临时工具，不入库
+# 以点开头的 .py（复用、抓取、验证类脚本）
+.*.py
+.*.bat
+
+# 历史遗留的具名脚本
 verify_pages.py
 verify_readme.py
 

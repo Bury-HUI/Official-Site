@@ -7,7 +7,7 @@
   <img alt="status" src="https://img.shields.io/badge/status-online-3ecf8e?style=flat-square">
   <img alt="license" src="https://img.shields.io/badge/license-MIT-3b6cf6?style=flat-square">
   <img alt="build" src="https://img.shields.io/badge/build-none%20required-79808f?style=flat-square">
-  <img alt="apps" src="https://img.shields.io/badge/entries-16-e5484d?style=flat-square">
+  <img alt="apps" src="https://img.shields.io/badge/entries-22-e5484d?style=flat-square">
 </p>
 
 **线上地址：** <https://bury-hui.github.io/Official-Site/>
@@ -31,12 +31,13 @@
 
 ## 收录清单
 
-一共 **16 个**入口，按「国内 / 国外」分成两组。
+一共 **22 个**入口，按「国内 / 国外」分成两组。
 
 ### 国内软件
 
 | 图标 | 名称 | 说明 | 官网 |
 | --- | --- | --- | --- |
+| <img src="icons/qqmail.png" width="20"> | QQ邮箱 | 腾讯 | <https://mail.qq.com/> |
 | <img src="icons/doubao.png" width="20"> | 豆包 | 字节跳动 AI 助手 | <https://www.doubao.com/> |
 | <img src="icons/deepseek.ico" width="20"> | DeepSeek | 深度求索 | <https://www.deepseek.com/> |
 | <img src="icons/qianwen.png" width="20"> | 千问 | 阿里巴巴 | <https://www.qianwen.com/> |
@@ -44,13 +45,18 @@
 | <img src="icons/kimi.png" width="20"> | Kimi | 月之暗面 | <https://www.kimi.com/> |
 | <img src="icons/workbuddy.svg" width="20"> | WorkBuddy | AI 工作助手 | <https://www.workbuddy.cn/app> |
 | <img src="icons/kanju.png" width="20"> | 看剧 AI | Kanju AI | <https://kanju1.ai/> |
+| <img src="icons/chaoxing.png" width="20"> | 学习通 | 超星 | <https://www.chaoxing.com/> |
+| <img src="icons/amap.png" width="20"> | 高德地图 | Amap | <https://ditu.amap.com/ssr/search> |
+| <img src="icons/1ppt.png" width="20"> | PPT模版 | 1PPT 素材站 | <https://www.1ppt.com/> |
 
 ### 国外软件
 
 | 图标 | 名称 | 说明 | 官网 |
 | --- | --- | --- | --- |
 | <img src="icons/github.svg" width="20"> | GitHub | 代码托管平台 | <https://github.com/> |
+| <img src="icons/openai.png" width="20"> | OpenAI | openai.com | <https://openai.com/> |
 | <img src="icons/chatgpt.svg" width="20"> | ChatGPT | OpenAI | <https://chatgpt.com/> |
+| <img src="icons/claude.png" width="20"> | Claude | Anthropic | <https://claude.ai/> |
 | <img src="icons/tiktok.svg" width="20"> | TikTok | 短视频平台 | <https://www.tiktok.com/> |
 | <img src="icons/x.svg" width="20"> | X | 推特 | <https://x.com/> |
 | <img src="icons/youtube.svg" width="20"> | YouTube | 视频平台 | <https://www.youtube.com/> |
@@ -79,27 +85,33 @@
 ```
 .
 ├── index.html          # 全部内容：结构 + 样式 + 数据 + 逻辑（单文件）
-├── icons/              # 16 个软件图标（png / svg / ico）
-│   ├── doubao.png
-│   ├── deepseek.ico
-│   ├── qianwen.png
-│   ├── mimo.png
-│   ├── kimi.png
-│   ├── workbuddy.svg
-│   ├── kanju.png
-│   ├── github.svg
-│   ├── chatgpt.svg
-│   ├── tiktok.svg
-│   ├── x.svg
-│   ├── youtube.svg
-│   ├── facebook.svg
-│   ├── telegram.svg
-│   ├── instagram.svg
-│   └── whatsapp.svg
+├── icons/              # 22 个软件图标（png / svg / ico）
+│   ├── qqmail.png          腾讯 QQ邮箱
+│   ├── doubao.png          豆包
+│   ├── deepseek.ico        DeepSeek
+│   ├── qianwen.png         千问
+│   ├── mimo.png            小米 MiMo
+│   ├── kimi.png            Kimi
+│   ├── workbuddy.svg       WorkBuddy
+│   ├── kanju.png           看剧 AI
+│   ├── chaoxing.png        学习通
+│   ├── amap.png            高德地图
+│   ├── 1ppt.png            PPT模版
+│   ├── github.svg          GitHub
+│   ├── openai.png          OpenAI
+│   ├── chatgpt.svg         ChatGPT
+│   ├── claude.png          Claude
+│   ├── tiktok.svg          TikTok
+│   ├── x.svg               X
+│   ├── youtube.svg         YouTube
+│   ├── facebook.svg        Facebook
+│   ├── telegram.svg        Telegram
+│   ├── instagram.svg       Instagram
+│   └── whatsapp.svg        WhatsApp
 └── .nojekyll            # 告诉 GitHub Pages 跳过 Jekyll 处理
 ```
 
-整个站点总计约 **380 KB**，最大的一块是图标资源。没有任何依赖需要安装。
+整个站点总计约 **430 KB**，最大的一块是图标资源。没有任何依赖需要安装。
 
 ---
 
@@ -134,10 +146,12 @@ npx serve .
 ```js
 const APPS = [
   /* ---------- 国内 ---------- */
-  { name:"豆包",      en:"Doubao",     url:"https://www.doubao.com/",  icon:"icons/doubao.png",  group:"cn" },
-  { name:"小米 MiMo", en:"Xiaomi MiMo", url:"https://mimo.mi.com/",    icon:"icons/mimo.png",    group:"cn" },
+  { name:"QQ邮箱",    en:"腾讯",        url:"https://mail.qq.com/",      icon:"icons/qqmail.png",   group:"cn" },
+  { name:"豆包",      en:"Doubao",     url:"https://www.doubao.com/",   icon:"icons/doubao.png",   group:"cn" },
+  { name:"学习通",    en:"超星",        url:"https://www.chaoxing.com/", icon:"icons/chaoxing.png", group:"cn" },
   /* ---------- 国外 ---------- */
-  { name:"GitHub",    en:"代码托管平台", url:"https://github.com/",     icon:"icons/github.svg",  group:"intl", mono:true }
+  { name:"GitHub",    en:"代码托管平台", url:"https://github.com/",       icon:"icons/github.svg",   group:"intl", mono:true },
+  { name:"Claude",    en:"Anthropic",  url:"https://claude.ai/",        icon:"icons/claude.png",   group:"intl" }
 ];
 ```
 
@@ -160,6 +174,12 @@ const APPS = [
 3. 保存，刷新页面即可看到——**无需重启、无需构建**。
 
 如果新图标是纯黑或纯白的单色 SVG，记得加上 `"mono": true`，否则深色模式下会看不清。
+
+### 图标格式
+
+支持 `png` / `svg` / `ico`。图标槽显示尺寸为 **48×48**（移动端 36×36），所以图标原始尺寸建议不低于 48×48，否则放大后会发虚。
+
+`icons/` 目录里的位图图标（`qqmail.png`、`chaoxing.png`、`amap.png`、`openai.png`、`claude.png`、`1ppt.png`）都是从各站官方地址抓取后统一转换为 128×128 PNG 的，避免浏览器在不同 DPI 下缩放产生的锯齿。转换过程不引入任何第三方依赖。
 
 ---
 
