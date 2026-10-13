@@ -1,0 +1,12 @@
+# 本地辅助脚本，不入库
+.deploy_api.py
+.push_readme.py
+verify_pages.py
+verify_readme.py
+
+# 系统 / 编辑器
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
