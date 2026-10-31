@@ -39,7 +39,7 @@
 | --- | --- | --- | --- |
 | <img src="icons/qqmail.png" width="20"> | QQ邮箱 | 腾讯 | <https://mail.qq.com/> |
 | <img src="icons/doubao.png" width="20"> | 豆包 | 字节跳动 AI 助手 | <https://www.doubao.com/> |
-| <img src="icons/deepseek.ico" width="20"> | DeepSeek | 深度求索 | <https://www.deepseek.com/> |
+| <img src="icons/deepseek.png" width="20"> | DeepSeek | 深度求索 | <https://www.deepseek.com/> |
 | <img src="icons/qianwen.png" width="20"> | 千问 | 阿里巴巴 | <https://www.qianwen.com/> |
 | <img src="icons/mimo.png" width="20"> | 小米 MiMo | Xiaomi MiMo | <https://mimo.mi.com/> |
 | <img src="icons/kimi.png" width="20"> | Kimi | 月之暗面 | <https://www.kimi.com/> |
@@ -74,7 +74,7 @@
 - **分组切换** — 底部导航栏可在「全部 / 国内软件 / 国外软件」之间切换。桌面端是浮动胶囊，移动端是贴底 Tab 栏。
 - **深色模式** — 右上角按钮切换，选择会记在浏览器里，下次打开保持一致。
 - **键盘快捷键** — 按 `/` 聚焦搜索框，按 `Esc` 清空并退出。
-- **自适应布局** — 桌面端多列网格，手机端自动收窄为两列以上，图标等比缩放。
+- **自适应布局** — 桌面端多列网格，手机端自动收窄为两到三列，320px 窄屏单独适配；底部 Tab 栏预留了 iOS 安全区高度，页脚不会被压住。
 - **响应式动效** — 卡片悬浮上浮、图标微旋，进入页面时逐张升起；均为纯 CSS，无动画库。
 - **App 内增强** — 检测到运行在 App 的 WebView 中时，自动去掉 `target="_blank"`，改由宿主调用系统浏览器打开链接，并同步深色主题状态。
 
@@ -85,10 +85,10 @@
 ```
 .
 ├── index.html          # 全部内容：结构 + 样式 + 数据 + 逻辑（单文件）
-├── icons/              # 22 个软件图标（png / svg / ico）
+├── icons/              # 22 个软件图标（png / svg）
 │   ├── qqmail.png          腾讯 QQ邮箱
 │   ├── doubao.png          豆包
-│   ├── deepseek.ico        DeepSeek
+│   ├── deepseek.png        DeepSeek
 │   ├── qianwen.png         千问
 │   ├── mimo.png            小米 MiMo
 │   ├── kimi.png            Kimi
@@ -111,7 +111,7 @@
 └── .nojekyll            # 告诉 GitHub Pages 跳过 Jekyll 处理
 ```
 
-整个站点总计约 **430 KB**，最大的一块是图标资源。没有任何依赖需要安装。
+整个站点总计约 **150 KB**（页面 22 KB + 图标 128 KB），最大的一块是图标资源。没有任何依赖需要安装。
 
 ---
 
@@ -177,9 +177,11 @@ const APPS = [
 
 ### 图标格式
 
-支持 `png` / `svg` / `ico`。图标槽显示尺寸为 **48×48**（移动端 36×36），所以图标原始尺寸建议不低于 48×48，否则放大后会发虚。
+支持 `png` / `svg`。图标槽显示尺寸为 **48×48**（移动端 36×36，Retina 下等效 96×96），所以位图统一按 **128×128** 存放：既够 2x 屏清晰，又不至于让单张图占掉几十 KB。
 
-`icons/` 目录里的位图图标（`qqmail.png`、`chaoxing.png`、`amap.png`、`openai.png`、`claude.png`、`1ppt.png`）都是从各站官方地址抓取后统一转换为 128×128 PNG 的，避免浏览器在不同 DPI 下缩放产生的锯齿。转换过程不引入任何第三方依赖。
+`icons/` 目录里所有位图都是 128×128 PNG，用 Lanczos 重采样生成，转换过程不引入任何第三方依赖。少数几张（`claude.png` 32×32、`qianwen.png` 80×80、`openai.png` 96×96）官方只提供小图，属于**放大使用**，在高分屏上会略糊——有高清原图时替换掉即可。
+
+不要用 `.ico` 当图标：ico 内部帧尺寸不定，浏览器渲染时容易取错帧，且体积通常是同尺寸 PNG 的几倍（原 `deepseek.ico` 就是 205 KB，换成 128 PNG 后只有 8 KB）。
 
 ---
 

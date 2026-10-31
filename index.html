@@ -8,6 +8,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%233b6cf6'/%3E%3Cg fill='%23fff'%3E%3Crect x='14' y='14' width='15' height='15' rx='4.5'/%3E%3Crect x='35' y='14' width='15' height='15' rx='4.5'/%3E%3Crect x='14' y='35' width='15' height='15' rx='4.5'/%3E%3Crect x='35' y='35' width='15' height='15' rx='4.5'/%3E%3C/g%3E%3C/svg%3E" />
 <style>
   :root{
+    color-scheme:light;
     --bg:#f4f6fb;
     --bg-grad-1:rgba(59,108,246,.10);
     --bg-grad-2:rgba(229,72,77,.08);
@@ -27,6 +28,7 @@
     --tabbar-shadow:0 -10px 30px -22px rgba(20,30,60,.55);
   }
   html[data-theme="dark"]{
+    color-scheme:dark;
     --bg:#0b0d12;
     --bg-grad-1:rgba(59,108,246,.18);
     --bg-grad-2:rgba(229,72,77,.12);
@@ -212,17 +214,44 @@
   }
 
   @media (max-width:640px){
-    .wrap{padding:34px 16px 120px;}
+    /* 底部预留高度 = Tab 栏实际高度 + 安全区，避免页脚被压 */
+    .wrap{padding:30px 16px calc(84px + env(safe-area-inset-bottom, 0px));}
     .brand h1{font-size:27px;}
+    .brand p{margin-top:8px;font-size:13.5px;}
     .toolbar{width:100%;}
-    #q{width:100%;}
+    #q{width:100%;height:42px;}
     .search{flex:1;}
+    .icon-btn{width:42px;height:42px;}
+    .group{margin-bottom:34px;}
+    .group-head{margin-bottom:15px;}
+    .group-head h2{font-size:16px;}
     .grid{grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:11px;}
     .card{padding:18px 8px 15px;border-radius:17px;gap:10px;}
     .tile{width:54px;height:54px;border-radius:15px;}
     .tile img{width:36px;height:36px;}
     .meta .n{font-size:13px;}
     .meta .e{font-size:10.5px;}
+
+    /* 页脚：窄屏收成一行摘要，键盘提示对触屏无意义，直接隐藏 */
+    footer{margin-top:26px;padding-top:18px;justify-content:center;text-align:center;font-size:12px;}
+    footer .hint{display:none;}
+
+    /* 底部 Tab 栏：整体压低约 10px，给页脚腾出呼吸空间 */
+    .tabbar{padding:6px 10px calc(6px + env(safe-area-inset-bottom, 0px));gap:4px;}
+    .tab{padding:6px 4px;gap:3px;font-size:11.5px;border-radius:12px;}
+    .tab svg{width:19px;height:19px;}
+  }
+
+  /* 超窄屏（iPhone SE 一代 / 老安卓 320px） */
+  @media (max-width:359px){
+    .wrap{padding-left:13px;padding-right:13px;}
+    .brand h1{font-size:24px;}
+    .grid{grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:9px;}
+    .card{padding:15px 6px 13px;}
+    .tile{width:48px;height:48px;}
+    .tile img{width:32px;height:32px;}
+    .tab{font-size:11px;}
+    .tab svg{width:18px;height:18px;}
   }
 </style>
 </head>
@@ -263,8 +292,8 @@
   </main>
 
   <footer>
-    <span>显示 <b id="total">0</b> 个软件 · 点击卡片打开官网</span>
-    <span>按 <kbd>/</kbd> 快速搜索 · 图标版权归各品牌所有</span>
+    <span>共 <b id="total">0</b> 个软件 · 点击卡片打开官网</span>
+    <span class="hint">按 <kbd>/</kbd> 快速搜索 · 图标版权归各品牌所有</span>
   </footer>
 </div>
 
@@ -288,7 +317,7 @@ const APPS = [
   /* ---------- 国内 ---------- */
   { name:"QQ邮箱",      en:"腾讯",              url:"https://mail.qq.com/",        icon:"icons/qqmail.png",   group:"cn" },
   { name:"豆包",        en:"Doubao",           url:"https://www.doubao.com/",     icon:"icons/doubao.png",   group:"cn" },
-  { name:"DeepSeek",    en:"深度求索",          url:"https://www.deepseek.com/",   icon:"icons/deepseek.ico", group:"cn" },
+  { name:"DeepSeek",    en:"深度求索",          url:"https://www.deepseek.com/",   icon:"icons/deepseek.png", group:"cn" },
   { name:"千问",        en:"阿里巴巴",          url:"https://www.qianwen.com/",    icon:"icons/qianwen.png",  group:"cn" },
   { name:"小米 MiMo",   en:"Xiaomi MiMo",      url:"https://mimo.mi.com/",        icon:"icons/mimo.png",     group:"cn" },
   { name:"Kimi",        en:"月之暗面",          url:"https://www.kimi.com/",       icon:"icons/kimi.png",     group:"cn" },
