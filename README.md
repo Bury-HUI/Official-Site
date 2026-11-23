@@ -7,7 +7,7 @@
   <img alt="status" src="https://img.shields.io/badge/status-online-3ecf8e?style=flat-square">
   <img alt="license" src="https://img.shields.io/badge/license-MIT-3b6cf6?style=flat-square">
   <img alt="build" src="https://img.shields.io/badge/build-none%20required-79808f?style=flat-square">
-  <img alt="apps" src="https://img.shields.io/badge/entries-22-e5484d?style=flat-square">
+  <img alt="apps" src="https://img.shields.io/badge/entries-24-e5484d?style=flat-square">
 </p>
 
 **线上地址：** <https://bury-hui.github.io/Official-Site/>
@@ -31,7 +31,7 @@
 
 ## 收录清单
 
-一共 **22 个**入口，按「国内 / 国外」分成两组。
+一共 **24 个**入口，按「国内 / 国外」分成两组。
 
 ### 国内软件
 
@@ -53,6 +53,8 @@
 
 | 图标 | 名称 | 说明 | 官网 |
 | --- | --- | --- | --- |
+| <img src="icons/chrome.svg" width="20"> | Chrome | Google 浏览器 | <https://www.google.com/chrome/> |
+| <img src="icons/gmail.svg" width="20"> | Gmail | 谷歌邮箱 | <https://mail.google.com/> |
 | <img src="icons/github.svg" width="20"> | GitHub | 代码托管平台 | <https://github.com/> |
 | <img src="icons/openai.png" width="20"> | OpenAI | openai.com | <https://openai.com/> |
 | <img src="icons/chatgpt.svg" width="20"> | ChatGPT | OpenAI | <https://chatgpt.com/> |
@@ -85,7 +87,7 @@
 ```
 .
 ├── index.html          # 全部内容：结构 + 样式 + 数据 + 逻辑（单文件）
-├── icons/              # 22 个软件图标（png / svg）
+├── icons/              # 24 个软件图标（png / svg）
 │   ├── qqmail.png          腾讯 QQ邮箱
 │   ├── doubao.png          豆包
 │   ├── deepseek.png        DeepSeek
@@ -97,6 +99,8 @@
 │   ├── chaoxing.png        学习通
 │   ├── amap.png            高德地图
 │   ├── 1ppt.png            PPT模版
+│   ├── chrome.svg          Chrome
+│   ├── gmail.svg           Gmail
 │   ├── github.svg          GitHub
 │   ├── openai.png          OpenAI
 │   ├── chatgpt.svg         ChatGPT
@@ -111,7 +115,7 @@
 └── .nojekyll            # 告诉 GitHub Pages 跳过 Jekyll 处理
 ```
 
-整个站点总计约 **150 KB**（页面 22 KB + 图标 128 KB），最大的一块是图标资源。没有任何依赖需要安装。
+整个站点总计约 **153 KB**（页面 22 KB + 图标 130 KB），最大的一块是图标资源。没有任何依赖需要安装。
 
 ---
 
